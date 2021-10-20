@@ -1,4 +1,4 @@
-package com.ghertzsch.taxcalculator.application;
+package com.ghertzsch.taxcalculator.application.events;
 
 import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
 import com.ghertzsch.taxcalculator.domain.events.NetAmountComputed;
