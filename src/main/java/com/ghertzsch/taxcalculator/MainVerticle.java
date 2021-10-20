@@ -7,7 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
+import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
+import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
+import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
+import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
+import com.ghertzsch.taxcalculator.domain.valueobjects.NetAmount;
+import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
 import com.ghertzsch.taxcalculator.plugins.Resources.ProductResources;
+import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository;
+import com.ghertzsch.taxcalculator.plugins.endpoints.ListAmountComputationsEndpoint;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Promise;
@@ -28,6 +37,8 @@ import io.vertx.ext.web.handler.StaticHandler;
 public class MainVerticle extends AbstractVerticle {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MainVerticle.class);
+
+  private final NetAmountComputationRepository netAmountComputationRepository = new InMemoryNetAmountComputationRepository();
 
   public static void main(String[] args) {
 
@@ -57,28 +68,26 @@ public class MainVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) throws Exception {
     Router router = Router.router(vertx);
 
+    netAmountComputationRepository.storeComputation(new NetAmountComputation(
+      new NetAmount(100.0f),
+      new GrossAmount(200.0f),
+      new TaxRate(Country.DENMARK, TaxType.VALUE_ADDED_TAX, 25.0f)
+    ));
 
-    ProductResources productResources = new ProductResources();
-    // Map subrouter for Products
-    router.mountSubRouter("/api/", productResources.getAPISubRouter(vertx));
+    var listAmountComputationsEndpoint = new ListAmountComputationsEndpoint(
+      netAmountComputationRepository
+    );
+    router.mountSubRouter("/api/", listAmountComputationsEndpoint.getRouter(vertx));
 
     router.route().handler(StaticHandler.create().setCachingEnabled(false));
 
     vertx.createHttpServer().requestHandler(router).listen(8100, asyncResult -> {
-
       if (asyncResult.succeeded()) {
         LOGGER.info("HTTP server running on port " + config().getInteger("http.port"));
       }
       else {
         LOGGER.error("Could not start a HTTP server", asyncResult.cause());
       }
-
-
     });
-
-
-    // Map subrouter for Products
-    router.mountSubRouter("/api/", productResources.getAPISubRouter(vertx));
-
   }
 }
