@@ -1,50 +1,84 @@
 package com.ghertzsch.taxcalculator;
 
-import com.ghertzsch.taxcalculator.application.NetAmountComputedHandler;
-import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
-import com.ghertzsch.taxcalculator.domain.events.NetAmountComputed;
-import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
-import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
-import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
-import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
-import com.ghertzsch.taxcalculator.plugins.InMemoryNetAmountComputationRepository;
-import com.ghertzsch.taxcalculator.plugins.InMemoryTaxRateRepository;
+//import io.vertx.config.ConfigRetriever;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.ghertzsch.taxcalculator.plugins.Resources.ProductResources;
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.StaticHandler;
 
-/*public class MainVerticle extends AbstractVerticle {
 
-  @Override
-  public void start(Promise<Void> startPromise) throws Exception {
-    vertx.createHttpServer().requestHandler(req -> {
-      req.response()
-        .putHeader("content-type", "text/plain")
-        .end("Hello from Vert.x!");
-    }).listen(8888, http -> {
-      if (http.succeeded()) {
-        startPromise.complete();
-        System.out.println("HTTP server started on port 8888");
-      } else {
-        startPromise.fail(http.cause());
-      }
-    });
-  }
-}*/
 
-public class MainVerticle {
+public class MainVerticle extends AbstractVerticle {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MainVerticle.class);
 
   public static void main(String[] args) {
 
-    var taxRate = new TaxRate(Country.DENMARK, TaxType.VALUE_ADDED_TAX, (float) 0.25);
 
-    var netAmountComputationRepo = new InMemoryNetAmountComputationRepository();
+    Vertx vertx = Vertx.vertx();
 
-    var event = new NetAmountComputed(taxRate, new GrossAmount((float) 100_000));
-    var eventHandler = new NetAmountComputedHandler(netAmountComputationRepo);
-    eventHandler.handle(event);
+    // Use config/config.json from resources/classpath
+    /*ConfigRetriever configRetriever = ConfigRetriever.create(vertx);
 
-    netAmountComputationRepo.findAllComputations().forEach(netAmountComputation ->
-      System.out.println(netAmountComputation.getId() + ": " + netAmountComputation.getNetAmount().getValue()));
+    configRetriever.getConfig(config -> {
+
+      if (config.succeeded()) {
+
+        JsonObject configJson = config.result();
+
+        System.out.println(configJson.encodePrettily());
+
+        DeploymentOptions options = new DeploymentOptions().setConfig(configJson);
+    vertx.deployVerticle(new MainVerticle(), options);*/
+        vertx.deployVerticle(new MainVerticle());
+
+      }
+
+
+
+  @Override
+  public void start(Promise<Void> startPromise) throws Exception {
+    Router router = Router.router(vertx);
+
+
+    ProductResources productResources = new ProductResources();
+    // Map subrouter for Products
+    router.mountSubRouter("/api/", productResources.getAPISubRouter(vertx));
+
+    router.route().handler(StaticHandler.create().setCachingEnabled(false));
+
+    vertx.createHttpServer().requestHandler(router).listen(8100, asyncResult -> {
+
+      if (asyncResult.succeeded()) {
+        LOGGER.info("HTTP server running on port " + config().getInteger("http.port"));
+      }
+      else {
+        LOGGER.error("Could not start a HTTP server", asyncResult.cause());
+      }
+
+
+    });
+
+
+    // Map subrouter for Products
+    router.mountSubRouter("/api/", productResources.getAPISubRouter(vertx));
+
   }
-
 }

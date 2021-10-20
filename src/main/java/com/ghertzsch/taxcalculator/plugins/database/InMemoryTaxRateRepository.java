@@ -1,4 +1,4 @@
-package com.ghertzsch.taxcalculator.plugins;
+package com.ghertzsch.taxcalculator.plugins.database;
 
 import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
