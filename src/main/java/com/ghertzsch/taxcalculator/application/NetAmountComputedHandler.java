@@ -19,7 +19,11 @@ public class NetAmountComputedHandler {
 
     var netAmount = new NetAmount(grossAmountValue * (1 - taxRateValue));
 
-    var netAmountComputation = new NetAmountComputation(netAmount);
+    var netAmountComputation = new NetAmountComputation(
+      netAmount,
+      netAmountComputed.getGrossAmount(),
+      netAmountComputed.getTaxRate()
+    );
     netAmountComputationRepository.storeComputation(netAmountComputation);
   }
 

@@ -1,5 +1,6 @@
 package com.ghertzsch.taxcalculator.domain.entities;
 
+import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
 import com.ghertzsch.taxcalculator.domain.valueobjects.NetAmount;
 
 import java.util.UUID;
@@ -10,8 +11,14 @@ public class NetAmountComputation {
 
   private final NetAmount netAmount;
 
-  public NetAmountComputation(NetAmount netAmount) {
+  private final GrossAmount grossAmount;
+
+  private final TaxRate taxRate;
+
+  public NetAmountComputation(NetAmount netAmount, GrossAmount grossAmount, TaxRate taxRate) {
     this.netAmount = netAmount;
+    this.grossAmount = grossAmount;
+    this.taxRate = taxRate;
   }
 
   public UUID getId() {
@@ -22,4 +29,11 @@ public class NetAmountComputation {
     return netAmount;
   }
 
+  public GrossAmount getGrossAmount() {
+    return grossAmount;
+  }
+
+  public TaxRate getTaxRate() {
+    return taxRate;
+  }
 }

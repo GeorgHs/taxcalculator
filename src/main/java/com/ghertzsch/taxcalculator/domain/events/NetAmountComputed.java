@@ -5,7 +5,7 @@ import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
 
 import java.util.UUID;
 
-public class NetAmountComputed {
+public class NetAmountComputed extends Event {
 
   private final TaxRate taxRate;
 
