@@ -3,8 +3,6 @@ package com.ghertzsch.taxcalculator.domain.events;
 import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
 import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
 
-import java.util.UUID;
-
 public class NetAmountComputed extends Event {
 
   private final TaxRate taxRate;

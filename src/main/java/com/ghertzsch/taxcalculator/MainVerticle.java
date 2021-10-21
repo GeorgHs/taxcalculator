@@ -1,35 +1,25 @@
 package com.ghertzsch.taxcalculator;
 
 //import io.vertx.config.ConfigRetriever;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
 import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
+import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
 import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
 import com.ghertzsch.taxcalculator.domain.valueobjects.NetAmount;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
-import com.ghertzsch.taxcalculator.plugins.Resources.ProductResources;
 import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository;
-import com.ghertzsch.taxcalculator.plugins.endpoints.ListAmountComputationsEndpoint;
+import com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRateRepository;
+import com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint;
+import com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint;
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpHeaders;
-import io.vertx.core.json.Json;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
 
@@ -39,6 +29,7 @@ public class MainVerticle extends AbstractVerticle {
   private static final Logger LOGGER = LoggerFactory.getLogger(MainVerticle.class);
 
   private final NetAmountComputationRepository netAmountComputationRepository = new InMemoryNetAmountComputationRepository();
+  private final TaxRateRepository taxRateRepository = new InMemoryTaxRateRepository();
 
   public static void main(String[] args) {
 
@@ -68,16 +59,23 @@ public class MainVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) throws Exception {
     Router router = Router.router(vertx);
 
-    netAmountComputationRepository.storeComputation(new NetAmountComputation(
-      new NetAmount(100.0f),
-      new GrossAmount(200.0f),
-      new TaxRate(Country.DENMARK, TaxType.VALUE_ADDED_TAX, 25.0f)
+    taxRateRepository.storeTaxRate(new TaxRate(
+      Country.DENMARK,
+      TaxType.VALUE_ADDED_TAX,
+      25.0f
     ));
+    taxRateRepository.findAllTaxRates().stream().map(taxRate -> taxRate.getId()).forEach(System.out::println);
 
-    var listAmountComputationsEndpoint = new ListAmountComputationsEndpoint(
+    var listAmountComputationsEndpoint = new ListNetAmountComputationsEndpoint(
       netAmountComputationRepository
     );
     router.mountSubRouter("/api/", listAmountComputationsEndpoint.getRouter(vertx));
+
+    var prepareNetAmountComputationEndpoint = new PrepareNetAmountComputationEndpoint(
+      taxRateRepository,
+      netAmountComputationRepository
+    );
+    router.mountSubRouter("/api/", prepareNetAmountComputationEndpoint.getRouter(vertx));
 
     router.route().handler(StaticHandler.create().setCachingEnabled(false));
 

@@ -24,7 +24,7 @@ public class InMemoryNetAmountComputationRepository implements NetAmountComputat
   @Override
   public NetAmountComputation findComputationById(UUID id) {
     return netAmountComputations.stream()
-      .filter(netAmountComputation -> netAmountComputation.getId() == id)
+      .filter(netAmountComputation -> netAmountComputation.getId().equals(id))
       .findFirst()
       .orElse(null);
   }

@@ -19,7 +19,7 @@ public class InMemoryTaxRateRepository implements TaxRateRepository {
   @Override
   public TaxRate findTaxRateById(UUID id) {
     return taxRates.stream()
-      .filter(taxRate -> taxRate.getId() == id)
+      .filter(taxRate -> taxRate.getId().equals(id))
       .findFirst()
       .orElse(null);
   }

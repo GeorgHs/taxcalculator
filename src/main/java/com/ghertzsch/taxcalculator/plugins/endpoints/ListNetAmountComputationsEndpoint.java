@@ -14,11 +14,11 @@ import io.vertx.ext.web.handler.BodyHandler;
 
 import java.util.stream.Collectors;
 
-public class ListAmountComputationsEndpoint {
+public class ListNetAmountComputationsEndpoint {
 
   private final NetAmountComputationRepository repository;
 
-  public ListAmountComputationsEndpoint(NetAmountComputationRepository netAmountComputationRepository) {
+  public ListNetAmountComputationsEndpoint(NetAmountComputationRepository netAmountComputationRepository) {
     this.repository = netAmountComputationRepository;
   }
 
