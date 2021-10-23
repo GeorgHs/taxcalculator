@@ -1,27 +1,43 @@
 com/ghertzsch/taxcalculator/domain/queries/GetNetAmountComputation.java
  com.ghertzsch.taxcalculator.domain.queries.GetNetAmountComputation
+com/ghertzsch/taxcalculator/application/queries/ListTaxRatesHandler.java
+ com.ghertzsch.taxcalculator.application.queries.ListTaxRatesHandler
+com/ghertzsch/taxcalculator/adapters/TaxRateMapper.java
+ com.ghertzsch.taxcalculator.adapters.TaxRateMapper
 com/ghertzsch/taxcalculator/adapters/ListNetAmountComputationsDTO.java
  com.ghertzsch.taxcalculator.adapters.ListNetAmountComputationsDTO
-com/ghertzsch/taxcalculator/domain/subEntities/JournalEntry.java
- com.ghertzsch.taxcalculator.domain.subEntities.JournalEntry
+com/ghertzsch/taxcalculator/plugins/endpoints/PrepareNetAmountComputationEndpoint.java
+ com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint
+com/ghertzsch/taxcalculator/plugins/endpoints/ListNetAmountComputationsEndpoint.java
+ com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint
 com/ghertzsch/taxcalculator/domain/repositories/TaxRateRepository.java
  com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository
 com/ghertzsch/taxcalculator/domain/queries/ListNetAmountComputations.java
  com.ghertzsch.taxcalculator.domain.queries.ListNetAmountComputations
-com/ghertzsch/taxcalculator/domain/events/NetAmountComputed.java
- com.ghertzsch.taxcalculator.domain.events.NetAmountComputed
-com/ghertzsch/taxcalculator/plugins/Resources/Product.java
- com.ghertzsch.taxcalculator.plugins.Resources.Product
+com/ghertzsch/taxcalculator/application/commands/PrepareNetAmountComputationHandler.java
+ com.ghertzsch.taxcalculator.application.commands.PrepareNetAmountComputationHandler
+com/ghertzsch/taxcalculator/adapters/ListTaxRatesDTO.java
+ com.ghertzsch.taxcalculator.adapters.ListTaxRatesDTO
+com/ghertzsch/taxcalculator/application/events/NetAmountComputedHandler.java
+ com.ghertzsch.taxcalculator.application.events.NetAmountComputedHandler
 com/ghertzsch/taxcalculator/domain/repositories/NetAmountComputationRepository.java
  com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository
 com/ghertzsch/taxcalculator/domain/entities/TaxRate.java
  com.ghertzsch.taxcalculator.domain.entities.TaxRate
+com/ghertzsch/taxcalculator/domain/factories/Factory.java
+ com.ghertzsch.taxcalculator.domain.factories.Factory
+com/ghertzsch/taxcalculator/domain/commands/PrepareNetAmountComputation.java
+ com.ghertzsch.taxcalculator.domain.commands.PrepareNetAmountComputation
+com/ghertzsch/taxcalculator/adapters/TaxRateDTO.java
+ com.ghertzsch.taxcalculator.adapters.TaxRateDTO
 com/ghertzsch/taxcalculator/domain/valueobjects/GrossAmount.java
  com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount
-com/ghertzsch/taxcalculator/plugins/endpoints/ListNetAmountComputationsEndpoint.java
- com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint
+com/ghertzsch/taxcalculator/domain/events/NetAmountComputed.java
+ com.ghertzsch.taxcalculator.domain.events.NetAmountComputed
 com/ghertzsch/taxcalculator/plugins/Resources/ProductResources.java
  com.ghertzsch.taxcalculator.plugins.Resources.ProductResources
+com/ghertzsch/taxcalculator/domain/queries/ListTaxRates.java
+ com.ghertzsch.taxcalculator.domain.queries.ListTaxRates
 com/ghertzsch/taxcalculator/application/queries/GetNetAmountComputationHandler.java
  com.ghertzsch.taxcalculator.application.queries.GetNetAmountComputationHandler
 com/ghertzsch/taxcalculator/domain/valueobjects/NetAmount.java
@@ -32,27 +48,25 @@ com/ghertzsch/taxcalculator/domain/valueobjects/Country.java
  com.ghertzsch.taxcalculator.domain.valueobjects.Country
 com/ghertzsch/taxcalculator/domain/entities/NetAmountComputation.java
  com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation
-com/ghertzsch/taxcalculator/adapters/PrepareNetAmountComputationDTO.java
- com.ghertzsch.taxcalculator.adapters.PrepareNetAmountComputationDTO
+com/ghertzsch/taxcalculator/plugins/database/InMemoryNetAmountComputationRepository.java
+ com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository
 com/ghertzsch/taxcalculator/domain/valueobjects/TaxType.java
  com.ghertzsch.taxcalculator.domain.valueobjects.TaxType
+com/ghertzsch/taxcalculator/domain/factories/TaxRateFactory.java
+ com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory
 com/ghertzsch/taxcalculator/domain/events/Event.java
  com.ghertzsch.taxcalculator.domain.events.Event
 com/ghertzsch/taxcalculator/application/queries/ListNetAmountComputationsHandler.java
  com.ghertzsch.taxcalculator.application.queries.ListNetAmountComputationsHandler
 com/ghertzsch/taxcalculator/adapters/NetAmountComputationDTO.java
  com.ghertzsch.taxcalculator.adapters.NetAmountComputationDTO
-com/ghertzsch/taxcalculator/application/commands/PrepareNetAmountComputationHandler.java
- com.ghertzsch.taxcalculator.application.commands.PrepareNetAmountComputationHandler
-com/ghertzsch/taxcalculator/application/events/NetAmountComputedHandler.java
- com.ghertzsch.taxcalculator.application.events.NetAmountComputedHandler
-com/ghertzsch/taxcalculator/plugins/endpoints/PrepareNetAmountComputationEndpoint.java
- com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint
-com/ghertzsch/taxcalculator/domain/commands/PrepareNetAmountComputation.java
- com.ghertzsch.taxcalculator.domain.commands.PrepareNetAmountComputation
-com/ghertzsch/taxcalculator/MainVerticle.java
- com.ghertzsch.taxcalculator.MainVerticle
+com/ghertzsch/taxcalculator/plugins/Resources/Product.java
+ com.ghertzsch.taxcalculator.plugins.Resources.Product
+com/ghertzsch/taxcalculator/adapters/PrepareNetAmountComputationDTO.java
+ com.ghertzsch.taxcalculator.adapters.PrepareNetAmountComputationDTO
+com/ghertzsch/taxcalculator/plugins/endpoints/ListTaxRatesEndpoint.java
+ com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint
 com/ghertzsch/taxcalculator/plugins/database/InMemoryTaxRateRepository.java
  com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRateRepository
-com/ghertzsch/taxcalculator/plugins/database/InMemoryNetAmountComputationRepository.java
- com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository
+com/ghertzsch/taxcalculator/MainVerticle.java
+ com.ghertzsch.taxcalculator.MainVerticle

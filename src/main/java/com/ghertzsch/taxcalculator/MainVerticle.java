@@ -4,6 +4,8 @@ package com.ghertzsch.taxcalculator;
 
 import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
 import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
+import com.ghertzsch.taxcalculator.domain.factories.Factory;
+import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
@@ -13,6 +15,7 @@ import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
 import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository;
 import com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRateRepository;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint;
+import com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint;
 import com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -20,6 +23,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
 
@@ -53,18 +57,35 @@ public class MainVerticle extends AbstractVerticle {
 
       }
 
-
-
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     Router router = Router.router(vertx);
 
-    taxRateRepository.storeTaxRate(new TaxRate(
-      Country.DENMARK,
-      TaxType.VALUE_ADDED_TAX,
-      25.0f
-    ));
+    router.route().handler(CorsHandler.create("http://localhost:8080")
+      .allowedMethod(io.vertx.core.http.HttpMethod.GET)
+      .allowedMethod(io.vertx.core.http.HttpMethod.POST)
+      .allowedMethod(io.vertx.core.http.HttpMethod.OPTIONS)
+      .allowCredentials(true)
+      .allowedHeader("Access-Control-Allow-Headers")
+      .allowedHeader("Authorization")
+      .allowedHeader("Access-Control-Allow-Method")
+      .allowedHeader("Access-Control-Allow-Origin")
+      .allowedHeader("Access-Control-Allow-Credentials")
+      .allowedHeader("Content-Type"));
+
+    var denmarkVat = new TaxRateFactory()
+      .OfType(TaxType.VALUE_ADDED_TAX)
+      .WithCountry(Country.DENMARK)
+      .WithValue(25.0f)
+      .build();
+
+    taxRateRepository.storeTaxRate(denmarkVat);
     taxRateRepository.findAllTaxRates().stream().map(taxRate -> taxRate.getId()).forEach(System.out::println);
+
+    var listTaxRatesEndpoint = new ListTaxRatesEndpoint(
+      taxRateRepository
+    );
+    router.mountSubRouter("/api/", listTaxRatesEndpoint.getRouter(vertx));
 
     var listAmountComputationsEndpoint = new ListNetAmountComputationsEndpoint(
       netAmountComputationRepository

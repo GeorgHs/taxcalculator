@@ -9,19 +9,17 @@
           <v-container fluid>
             <v-row align="center">
               <v-col class="d-flex" cols="12" sm="6">
-                <v-select :items="items" label="Land"></v-select>
+                <v-select :items="countries" label="Land"></v-select>
               </v-col>
               <v-col class="d-flex" cols="12" sm="6">
-                <v-select :items="items" label="Steuerart"></v-select>
+                <v-select :items="taxTypes" label="Steuerart"></v-select>
               </v-col>
             </v-row>
           </v-container>
         </v-form>
       </v-card-text>
       <v-card-action>
-        <v-btn color="success" v-on:click="makeGetRequest"
-          >Betrag berechnen</v-btn
-        >
+        <v-btn color="success" @click="makeGetRequest">Betrag berechnen</v-btn>
       </v-card-action>
       <v-card-footer padless>
         <v-col class="text-center" cols="12">
@@ -41,13 +39,41 @@ export default {
   components: {},
 
   data: () => ({
-    items: ["Foo", "Bar", "Fizz", "Buzz"],
+    countries: [],
+    taxTypes: [],
     jsonres: [],
     endresult: 30,
     info: {},
   }),
 
+  created() {
+    this.getCountries().then(
+      (countries) => (this.countries = Array.from(countries))
+    );
+    this.getTaxTypes().then(
+      (taxTypes) => (this.taxTypes = Array.from(taxTypes))
+    );
+  },
+
   methods: {
+    async getTaxRates() {
+      const response = await axios.get("http://localhost:8100/api/taxrates");
+      const taxRates = response.data;
+
+      return taxRates;
+    },
+    async getCountries() {
+      const countries = (await this.getTaxRates()).map(
+        (taxRate) => taxRate.country
+      );
+      return new Set(countries);
+    },
+    async getTaxTypes() {
+      const taxTypes = (await this.getTaxRates()).map(
+        (taxRate) => taxRate.taxType
+      );
+      return new Set(taxTypes);
+    },
     async makeGetRequest() {
       // `this` inside methods points to the Vue instance
       this.name = "sdfsdf";
