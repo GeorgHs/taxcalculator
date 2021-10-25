@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class InMemoryNetAmountComputationRepository implements NetAmountComputationRepository {
+public class InMemoryNetAmountComputation implements NetAmountComputationRepository {
 
   private final ArrayList<NetAmountComputation> netAmountComputations = new ArrayList<>();
 

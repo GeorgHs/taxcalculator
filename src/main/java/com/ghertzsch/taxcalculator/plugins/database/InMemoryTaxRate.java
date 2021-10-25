@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class InMemoryTaxRateRepository implements TaxRateRepository {
+public class InMemoryTaxRate implements TaxRateRepository {
 
   private final ArrayList<TaxRate> taxRates = new ArrayList<>();
 

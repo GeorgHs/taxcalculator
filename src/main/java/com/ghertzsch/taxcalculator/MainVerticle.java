@@ -2,18 +2,13 @@ package com.ghertzsch.taxcalculator;
 
 //import io.vertx.config.ConfigRetriever;
 
-import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
-import com.ghertzsch.taxcalculator.domain.entities.TaxRate;
-import com.ghertzsch.taxcalculator.domain.factories.Factory;
 import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
-import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
-import com.ghertzsch.taxcalculator.domain.valueobjects.NetAmount;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
-import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputationRepository;
-import com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRateRepository;
+import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputation;
+import com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRate;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint;
 import com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint;
@@ -32,8 +27,8 @@ public class MainVerticle extends AbstractVerticle {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MainVerticle.class);
 
-  private final NetAmountComputationRepository netAmountComputationRepository = new InMemoryNetAmountComputationRepository();
-  private final TaxRateRepository taxRateRepository = new InMemoryTaxRateRepository();
+  private final NetAmountComputationRepository netAmountComputationRepository = new InMemoryNetAmountComputation();
+  private final TaxRateRepository taxRateRepository = new InMemoryTaxRate();
 
   public static void main(String[] args) {
 
