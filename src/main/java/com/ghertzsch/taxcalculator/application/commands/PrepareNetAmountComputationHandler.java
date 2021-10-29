@@ -1,31 +1,27 @@
 package com.ghertzsch.taxcalculator.application.commands;
 
+import com.ghertzsch.taxcalculator.application.events.NetAmountComputationPreparedHandler;
 import com.ghertzsch.taxcalculator.application.events.NetAmountComputedHandler;
 import com.ghertzsch.taxcalculator.domain.commands.PrepareNetAmountComputation;
-import com.ghertzsch.taxcalculator.domain.events.NetAmountComputed;
+import com.ghertzsch.taxcalculator.domain.events.NetAmountComputationPrepared;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
-import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
-import com.ghertzsch.taxcalculator.domain.valueobjects.GrossAmount;
+
+import java.util.UUID;
 
 public class PrepareNetAmountComputationHandler {
 
-  private final TaxRateRepository taxRateRepository;
+  private NetAmountComputationRepository repository;
 
-  private final NetAmountComputationRepository netAmountComputationRepository;
-
-  public PrepareNetAmountComputationHandler(TaxRateRepository taxRateRepository, NetAmountComputationRepository netAmountComputationRepository) {
-    this.taxRateRepository = taxRateRepository;
-    this.netAmountComputationRepository = netAmountComputationRepository;
+  public PrepareNetAmountComputationHandler(NetAmountComputationRepository repository) {
+    this.repository = repository;
   }
 
   public void handle(PrepareNetAmountComputation prepareNetAmountComputation) {
-    var taxRate = taxRateRepository.findTaxRateById(prepareNetAmountComputation.getTaxRateId());
-    var grossAmount = new GrossAmount(prepareNetAmountComputation.getGrossAmount());
-
-    var event = new NetAmountComputed(taxRate, grossAmount);
-    var eventHandler = new NetAmountComputedHandler(
-      netAmountComputationRepository
+    var event = new NetAmountComputationPrepared();
+    var eventHandler = new NetAmountComputationPreparedHandler(
+      repository
     );
+
     eventHandler.handle(event);
   }
 

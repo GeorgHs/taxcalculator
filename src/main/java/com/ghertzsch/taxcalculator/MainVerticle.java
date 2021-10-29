@@ -7,8 +7,9 @@ import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepos
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
-import com.ghertzsch.taxcalculator.plugins.database.InMemoryNetAmountComputation;
-import com.ghertzsch.taxcalculator.plugins.database.InMemoryTaxRate;
+import com.ghertzsch.taxcalculator.plugins.endpoints.ComputeNetAmountEndpoint;
+import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryNetAmountComputation;
+import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryTaxRate;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint;
 import com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint;
@@ -71,7 +72,7 @@ public class MainVerticle extends AbstractVerticle {
     var denmarkVat = new TaxRateFactory()
       .OfType(TaxType.VALUE_ADDED_TAX)
       .WithCountry(Country.DENMARK)
-      .WithValue(25.0f)
+      .WithValue(0.25f)
       .build();
 
     taxRateRepository.storeTaxRate(denmarkVat);
@@ -88,14 +89,19 @@ public class MainVerticle extends AbstractVerticle {
     router.mountSubRouter("/api/", listAmountComputationsEndpoint.getRouter(vertx));
 
     var prepareNetAmountComputationEndpoint = new PrepareNetAmountComputationEndpoint(
-      taxRateRepository,
       netAmountComputationRepository
     );
     router.mountSubRouter("/api/", prepareNetAmountComputationEndpoint.getRouter(vertx));
 
+    var computeNetAmountEndpoint = new ComputeNetAmountEndpoint(
+      taxRateRepository,
+      netAmountComputationRepository
+    );
+    router.mountSubRouter("/api/", computeNetAmountEndpoint.getRouter(vertx));
+
     router.route().handler(StaticHandler.create().setCachingEnabled(false));
 
-    vertx.createHttpServer().requestHandler(router).listen(8100, asyncResult -> {
+    vertx.createHttpServer().requestHandler(router).listen(1323, asyncResult -> {
       if (asyncResult.succeeded()) {
         LOGGER.info("HTTP server running on port " + config().getInteger("http.port"));
       }

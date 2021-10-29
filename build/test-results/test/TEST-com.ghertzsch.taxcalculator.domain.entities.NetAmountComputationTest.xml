@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2021-10-27T18:16:20" hostname="MSGN14370" time="0.026">
+  <properties/>
+  <testcase name="ShouldHaveAGrossAmount()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.015"/>
+  <testcase name="ShouldHaveAnId()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.002"/>
+  <testcase name="ShouldHaveANetAmount()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.001"/>
+  <testcase name="ShouldNotHaveATaxRate()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.001"/>
+  <testcase name="SetGrossAmountShouldNotSetAndThrowADomainExceptionIfANegativeValueIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.002"/>
+  <testcase name="SetGrossAmountShouldSetIfPositiveValueIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.0"/>
+  <testcase name="SetTaxRateShouldSetIfNullIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.001"/>
+  <testcase name="SetNetAmountShouldNotSetAndThrowADomainExceptionIfANegativeValueIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.001"/>
+  <testcase name="SetTaxRateShouldSetIfAValidTaxRateIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.001"/>
+  <testcase name="SetNetAmountShouldSetIfPositiveValueIsPassed()" classname="com.ghertzsch.taxcalculator.domain.entities.NetAmountComputationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

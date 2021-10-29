@@ -1,6 +1,5 @@
 package com.ghertzsch.taxcalculator.domain.entities;
 
-import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
 

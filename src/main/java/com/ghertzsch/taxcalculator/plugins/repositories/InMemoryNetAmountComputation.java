@@ -1,4 +1,4 @@
-package com.ghertzsch.taxcalculator.plugins.database;
+package com.ghertzsch.taxcalculator.plugins.repositories;
 
 import com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
@@ -13,6 +13,11 @@ public class InMemoryNetAmountComputation implements NetAmountComputationReposit
 
   @Override
   public void storeComputation(NetAmountComputation netAmountComputation) {
+    var netAmountComputationIndex = netAmountComputations.indexOf(netAmountComputation);
+    if (netAmountComputationIndex != -1) {
+      netAmountComputations.set(netAmountComputationIndex, netAmountComputation);
+      return;
+    }
     netAmountComputations.add(netAmountComputation);
   }
 

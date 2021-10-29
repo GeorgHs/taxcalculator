@@ -24,9 +24,7 @@ val launcherClassName = "io.vertx.core.Launcher"
 val watchForChange = "src/**/*"
 val doOnChange = "${projectDir}/gradlew classes"
 
-application {
-  mainClass.set(launcherClassName)
-}
+application.mainClass.set(launcherClassName)
 
 dependencies {
   implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
@@ -35,12 +33,11 @@ dependencies {
   implementation("com.google.code.gson:gson:2.8.8")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
+  testImplementation("org.mockito:mockito-core:3.+")
 }
 
-java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
-}
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
 
 tasks.withType<ShadowJar> {
   archiveClassifier.set("fat")

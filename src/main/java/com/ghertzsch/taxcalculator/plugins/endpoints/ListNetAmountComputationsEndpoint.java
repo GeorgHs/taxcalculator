@@ -6,6 +6,7 @@ import com.ghertzsch.taxcalculator.application.queries.ListNetAmountComputations
 import com.ghertzsch.taxcalculator.domain.queries.ListNetAmountComputations;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
@@ -67,7 +68,7 @@ public class ListNetAmountComputationsEndpoint {
 
     context.response().setStatusCode(HttpResponseStatus.OK.code())
       .putHeader("content-type", "application/json")
-      .end(new Gson().toJson(result));
+      .end(new GsonBuilder().serializeNulls().create().toJson(result));
   }
 
 }
