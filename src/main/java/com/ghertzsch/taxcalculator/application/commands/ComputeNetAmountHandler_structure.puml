@@ -1,0 +1,213 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.ghertzsch.taxcalculator.application.commands.ComputeNetAmountHandler"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+
+
+'nodes
+subgraph cluster_2097376444 {
+   	label=ghertzsch
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+
+   subgraph cluster_1859676221 {
+   	label=taxcalculator
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+
+   ComputeNetAmountHandler103443966[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ComputeNetAmountHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   netAmountComputationRepository: NetAmountComputationRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   taxRateRepository: TaxRateRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ handle(computeNetAmount: ComputeNetAmount)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GrossAmount637773781[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GrossAmount</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   value: float [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+InMemoryNetAmountComputation2059179406[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)InMemoryNetAmountComputation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   netAmountComputations: ArrayList&lt;NetAmountComputation&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ findAllComputations(): List&lt;NetAmountComputation&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findComputationById(id: UUID): NetAmountComputation</TD></TR>
+<TR><TD ALIGN="LEFT" >+ storeComputation(netAmountComputation: NetAmountComputation)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+InMemoryTaxRate2059179406[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)InMemoryTaxRate</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   taxRates: ArrayList&lt;TaxRate&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ findAllTaxRates(): List&lt;TaxRate&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findTaxRateById(id: UUID): TaxRate</TD></TR>
+<TR><TD ALIGN="LEFT" >+ storeTaxRate(taxRate: TaxRate)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NetAmount637773781[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NetAmount</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   value: float [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NetAmountComputation1530100205[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NetAmountComputation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   grossAmount: GrossAmount [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: UUID [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   netAmount: NetAmount [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   taxRate: TaxRate [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TaxRate1530100205[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TaxRate</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   country: Country [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: UUID [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   taxType: TaxType [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   value: float [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+}
+}
+
+'edges
+ComputeNetAmountHandler103443966 -> InMemoryNetAmountComputation2059179406[arrowhead=none, arrowtail=empty, dir=both];
+ComputeNetAmountHandler103443966 -> InMemoryTaxRate2059179406[arrowhead=none, arrowtail=empty, dir=both];
+InMemoryNetAmountComputation2059179406 -> NetAmountComputation1530100205[label="netAmountComputations
+[0..*]"];
+InMemoryTaxRate2059179406 -> TaxRate1530100205[label="taxRates
+[0..*]"];
+NetAmountComputation1530100205 -> GrossAmount637773781[label="grossAmount
+[0..1]"];
+NetAmountComputation1530100205 -> NetAmount637773781[label="netAmount
+[0..1]"];
+NetAmountComputation1530100205 -> TaxRate1530100205[label="taxRate
+[0..1]"];
+
+}
+@enduml

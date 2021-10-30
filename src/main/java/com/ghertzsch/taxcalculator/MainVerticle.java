@@ -7,6 +7,7 @@ import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepos
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
+import com.ghertzsch.taxcalculator.plugins.Resources.Country.Denmark;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ComputeNetAmountEndpoint;
 import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryNetAmountComputation;
 import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryTaxRate;
@@ -69,13 +70,26 @@ public class MainVerticle extends AbstractVerticle {
       .allowedHeader("Access-Control-Allow-Credentials")
       .allowedHeader("Content-Type"));
 
-    var denmarkVat = new TaxRateFactory()
-      .OfType(TaxType.VALUE_ADDED_TAX)
-      .WithCountry(Country.DENMARK)
-      .WithValue(0.25f)
-      .build();
 
-    taxRateRepository.storeTaxRate(denmarkVat);
+    Denmark.generate(taxRateRepository);
+
+
+
+    var belgiumVat = new TaxRateFactory()
+      .OfType(TaxType.VALUE_ADDED_TAX)
+      .WithCountry(Country.BELGIUM)
+      .WithValue(0.21f)
+      .build();
+    taxRateRepository.storeTaxRate(belgiumVat);
+
+    var bulgariaVat = new TaxRateFactory()
+      .OfType(TaxType.VALUE_ADDED_TAX)
+      .WithCountry(Country.BULGARIA)
+      .WithValue(0.21f)
+      .build();
+    taxRateRepository.storeTaxRate(bulgariaVat);
+
+
     taxRateRepository.findAllTaxRates().stream().map(taxRate -> taxRate.getId()).forEach(System.out::println);
 
     var listTaxRatesEndpoint = new ListTaxRatesEndpoint(

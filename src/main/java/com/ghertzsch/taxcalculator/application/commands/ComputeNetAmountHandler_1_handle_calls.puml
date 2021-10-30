@@ -1,0 +1,184 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "com.ghertzsch.taxcalculator.application.commands.ComputeNetAmountHandler#handle(ComputeNetAmount)",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "com.ghertzsch.taxcalculator.application.commands.ComputeNetAmountHandler"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+
+
+'nodes
+subgraph cluster_2097376444 {
+   	label=ghertzsch
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+
+   subgraph cluster_1859676221 {
+   	label=taxcalculator
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+
+   subgraph cluster_1508391512 {
+   	label=InMemoryNetAmountComputation
+	labeljust=l
+	fillcolor=white
+	style=filled
+
+   InMemoryNetAmountComputation2059179406XXXfindComputationById2616251[
+	label="+ findComputationById()"
+	style=filled
+	fillcolor=white
+	tooltip="InMemoryNetAmountComputation
+
+null"
+	fontcolor=darkgreen
+];
+
+InMemoryNetAmountComputation2059179406XXXstoreComputation381857198[
+	label="+ storeComputation()"
+	style=filled
+	fillcolor=white
+	tooltip="InMemoryNetAmountComputation
+
+null"
+	fontcolor=darkgreen
+];
+}
+
+subgraph cluster_1817063099 {
+   	label=InMemoryTaxRate
+	labeljust=l
+	fillcolor=white
+	style=filled
+
+   InMemoryTaxRate2059179406XXXfindTaxRateById2616251[
+	label="+ findTaxRateById()"
+	style=filled
+	fillcolor=white
+	tooltip="InMemoryTaxRate
+
+null"
+	fontcolor=darkgreen
+];
+}
+
+subgraph cluster_450711684 {
+   	label=ComputeNetAmountHandler
+	labeljust=l
+	fillcolor=white
+	style=filled
+
+   ComputeNetAmountHandler103443966XXXhandle1996465662[
+	label="+ handle()"
+	style=filled
+	fillcolor=white
+	tooltip="ComputeNetAmountHandler
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+}
+
+subgraph cluster_627659385 {
+   	label=NetAmountComputedHandler
+	labeljust=l
+	fillcolor=white
+	style=filled
+
+   NetAmountComputedHandler984263183XXXhandle1709868446[
+	label="+ handle()"
+	style=filled
+	fillcolor=white
+	tooltip="NetAmountComputedHandler
+
+null"
+	fontcolor=darkgreen
+];
+}
+}
+}
+
+'edges
+ComputeNetAmountHandler103443966XXXhandle1996465662 -> InMemoryTaxRate2059179406XXXfindTaxRateById2616251;
+ComputeNetAmountHandler103443966XXXhandle1996465662 -> NetAmountComputedHandler984263183XXXhandle1709868446;
+NetAmountComputedHandler984263183XXXhandle1709868446 -> InMemoryNetAmountComputation2059179406XXXfindComputationById2616251;
+NetAmountComputedHandler984263183XXXhandle1709868446 -> InMemoryNetAmountComputation2059179406XXXstoreComputation381857198;
+
+}
+@enduml
