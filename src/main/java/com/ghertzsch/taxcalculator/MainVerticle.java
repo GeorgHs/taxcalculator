@@ -2,13 +2,9 @@ package com.ghertzsch.taxcalculator;
 
 //import io.vertx.config.ConfigRetriever;
 
-import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
-import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
-import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
-import com.ghertzsch.taxcalculator.plugins.Resources.Country.*;
-import com.ghertzsch.taxcalculator.plugins.Resources.GenerateAllCountries;
+import com.ghertzsch.taxcalculator.plugins.Resources.GenerateAllCountriesWithTax;
 import com.ghertzsch.taxcalculator.plugins.endpoints.ComputeNetAmountEndpoint;
 import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryNetAmountComputation;
 import com.ghertzsch.taxcalculator.plugins.repositories.InMemoryTaxRate;
@@ -72,7 +68,7 @@ public class MainVerticle extends AbstractVerticle {
       .allowedHeader("Content-Type"));
 
 
-      GenerateAllCountries.generate(taxRateRepository);
+      GenerateAllCountriesWithTax.generate(taxRateRepository);
 
 
     taxRateRepository.findAllTaxRates().stream().map(taxRate -> taxRate.getId()).forEach(System.out::println);
@@ -102,7 +98,7 @@ public class MainVerticle extends AbstractVerticle {
 
     vertx.createHttpServer().requestHandler(router).listen(1323, asyncResult -> {
       if (asyncResult.succeeded()) {
-        LOGGER.info("HTTP server running on port " + config().getInteger("http.port"));
+        LOGGER.info("HTTP server running on port " + String.valueOf(1323));
       }
       else {
         LOGGER.error("Could not start a HTTP server", asyncResult.cause());

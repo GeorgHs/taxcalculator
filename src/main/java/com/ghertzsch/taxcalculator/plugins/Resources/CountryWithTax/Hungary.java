@@ -1,22 +1,22 @@
-package com.ghertzsch.taxcalculator.plugins.Resources.Country;
+package com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax;
 
 import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
 import com.ghertzsch.taxcalculator.domain.valueobjects.Country;
 import com.ghertzsch.taxcalculator.domain.valueobjects.TaxType;
 
-public class Italy {
+public class Hungary {
   public static void generate(TaxRateRepository taxRateRepository) {
     var vat = new TaxRateFactory()
       .OfType(TaxType.VALUE_ADDED_TAX)
-      .WithCountry(Country.ITALY)
-      .WithValue(0.22f)
+      .WithCountry(Country.HUNGARY)
+      .WithValue(0.27f)
       .build();
 
     var capGains = new TaxRateFactory()
       .OfType(TaxType.CAPITAL_GAINS_TAX)
-      .WithCountry(Country.ITALY)
-      .WithValue(0.26f)
+      .WithCountry(Country.HUNGARY)
+      .WithValue(0.15f)
       .build();
 
     taxRateRepository.storeTaxRate(vat);

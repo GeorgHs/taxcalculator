@@ -1,7 +1,7 @@
 com/ghertzsch/taxcalculator/domain/queries/GetNetAmountComputation.java
  com.ghertzsch.taxcalculator.domain.queries.GetNetAmountComputation
-com/ghertzsch/taxcalculator/domain/valueobjects/Country.java
- com.ghertzsch.taxcalculator.domain.valueobjects.Country
+com/ghertzsch/taxcalculator/plugins/Resources/ProductResources.java
+ com.ghertzsch.taxcalculator.plugins.Resources.ProductResources
 com/ghertzsch/taxcalculator/domain/queries/ListTaxRates.java
  com.ghertzsch.taxcalculator.domain.queries.ListTaxRates
 com/ghertzsch/taxcalculator/adapters/ListNetAmountComputationsDTO.java
@@ -36,49 +36,105 @@ com/ghertzsch/taxcalculator/domain/events/NetAmountComputationPrepared.java
  com.ghertzsch.taxcalculator.domain.events.NetAmountComputationPrepared
 com/ghertzsch/taxcalculator/domain/commands/ComputeNetAmount.java
  com.ghertzsch.taxcalculator.domain.commands.ComputeNetAmount
-com/ghertzsch/taxcalculator/plugins/Resources/ProductResources.java
- com.ghertzsch.taxcalculator.plugins.Resources.ProductResources
-com/ghertzsch/taxcalculator/plugins/endpoints/ComputeNetAmountEndpoint.java
- com.ghertzsch.taxcalculator.plugins.endpoints.ComputeNetAmountEndpoint
-com/ghertzsch/taxcalculator/domain/events/NetAmountComputed.java
- com.ghertzsch.taxcalculator.domain.events.NetAmountComputed
-com/ghertzsch/taxcalculator/application/queries/ListTaxRatesHandler.java
- com.ghertzsch.taxcalculator.application.queries.ListTaxRatesHandler
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Spain.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Spain
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Estonia.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Estonia
 com/ghertzsch/taxcalculator/adapters/TaxRateMapper.java
  com.ghertzsch.taxcalculator.adapters.TaxRateMapper
-com/ghertzsch/taxcalculator/domain/entities/TaxRate.java
- com.ghertzsch.taxcalculator.domain.entities.TaxRate
-com/ghertzsch/taxcalculator/plugins/endpoints/ListTaxRatesEndpoint.java
- com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint
-com/ghertzsch/taxcalculator/domain/factories/TaxRateFactory.java
- com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory
-com/ghertzsch/taxcalculator/domain/repositories/TaxRateRepository.java
- com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository
-com/ghertzsch/taxcalculator/plugins/repositories/InMemoryTaxRate.java
- com.ghertzsch.taxcalculator.plugins.repositories.InMemoryTaxRate
-com/ghertzsch/taxcalculator/plugins/repositories/InMemoryNetAmountComputation.java
- com.ghertzsch.taxcalculator.plugins.repositories.InMemoryNetAmountComputation
-com/ghertzsch/taxcalculator/application/queries/GetNetAmountComputationHandler.java
- com.ghertzsch.taxcalculator.application.queries.GetNetAmountComputationHandler
-com/ghertzsch/taxcalculator/application/commands/ComputeNetAmountHandler.java
- com.ghertzsch.taxcalculator.application.commands.ComputeNetAmountHandler
-com/ghertzsch/taxcalculator/application/events/NetAmountComputedHandler.java
- com.ghertzsch.taxcalculator.application.events.NetAmountComputedHandler
-com/ghertzsch/taxcalculator/application/queries/ListNetAmountComputationsHandler.java
- com.ghertzsch.taxcalculator.application.queries.ListNetAmountComputationsHandler
-com/ghertzsch/taxcalculator/domain/repositories/NetAmountComputationRepository.java
- com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Cyprus.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Cyprus
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/CzechRepublic.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.CzechRepublic
 com/ghertzsch/taxcalculator/plugins/endpoints/PrepareNetAmountComputationEndpoint.java
  com.ghertzsch.taxcalculator.plugins.endpoints.PrepareNetAmountComputationEndpoint
-com/ghertzsch/taxcalculator/adapters/NetAmountComputationMapper.java
- com.ghertzsch.taxcalculator.adapters.NetAmountComputationMapper
 com/ghertzsch/taxcalculator/plugins/endpoints/ListNetAmountComputationsEndpoint.java
  com.ghertzsch.taxcalculator.plugins.endpoints.ListNetAmountComputationsEndpoint
+com/ghertzsch/taxcalculator/domain/repositories/TaxRateRepository.java
+ com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Germany.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Germany
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Austria.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Austria
+com/ghertzsch/taxcalculator/application/events/NetAmountComputedHandler.java
+ com.ghertzsch.taxcalculator.application.events.NetAmountComputedHandler
+com/ghertzsch/taxcalculator/domain/entities/TaxRate.java
+ com.ghertzsch.taxcalculator.domain.entities.TaxRate
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Finnland.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Finnland
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/France.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.France
 com/ghertzsch/taxcalculator/application/events/NetAmountComputationPreparedHandler.java
  com.ghertzsch.taxcalculator.application.events.NetAmountComputationPreparedHandler
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Lithuania.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Lithuania
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Bulgaria.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Bulgaria
+com/ghertzsch/taxcalculator/plugins/repositories/InMemoryNetAmountComputation.java
+ com.ghertzsch.taxcalculator.plugins.repositories.InMemoryNetAmountComputation
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Poland.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Poland
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Hungary.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Hungary
+com/ghertzsch/taxcalculator/adapters/NetAmountComputationMapper.java
+ com.ghertzsch.taxcalculator.adapters.NetAmountComputationMapper
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Sweden.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Sweden
+com/ghertzsch/taxcalculator/plugins/repositories/InMemoryTaxRate.java
+ com.ghertzsch.taxcalculator.plugins.repositories.InMemoryTaxRate
 com/ghertzsch/taxcalculator/domain/entities/NetAmountComputation.java
  com.ghertzsch.taxcalculator.domain.entities.NetAmountComputation
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Belgium.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Belgium
+com/ghertzsch/taxcalculator/plugins/endpoints/ComputeNetAmountEndpoint.java
+ com.ghertzsch.taxcalculator.plugins.endpoints.ComputeNetAmountEndpoint
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Latvia.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Latvia
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Netherlands.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Netherlands
+com/ghertzsch/taxcalculator/domain/factories/TaxRateFactory.java
+ com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory
+com/ghertzsch/taxcalculator/application/commands/ComputeNetAmountHandler.java
+ com.ghertzsch.taxcalculator.application.commands.ComputeNetAmountHandler
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Slovakia.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Slovakia
+com/ghertzsch/taxcalculator/application/queries/ListNetAmountComputationsHandler.java
+ com.ghertzsch.taxcalculator.application.queries.ListNetAmountComputationsHandler
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/NorthernIreland.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.NorthernIreland
+com/ghertzsch/taxcalculator/plugins/endpoints/ListTaxRatesEndpoint.java
+ com.ghertzsch.taxcalculator.plugins.endpoints.ListTaxRatesEndpoint
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Luxemburg.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Luxemburg
+com/ghertzsch/taxcalculator/plugins/Resources/GenerateAllCountriesWithTax.java
+ com.ghertzsch.taxcalculator.plugins.Resources.GenerateAllCountriesWithTax
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Portugal.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Portugal
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Denmark.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Denmark
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Italy.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Italy
+com/ghertzsch/taxcalculator/application/queries/ListTaxRatesHandler.java
+ com.ghertzsch.taxcalculator.application.queries.ListTaxRatesHandler
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Ireland.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Ireland
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Romania.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Romania
 com/ghertzsch/taxcalculator/application/commands/PrepareNetAmountComputationHandler.java
  com.ghertzsch.taxcalculator.application.commands.PrepareNetAmountComputationHandler
+com/ghertzsch/taxcalculator/domain/repositories/NetAmountComputationRepository.java
+ com.ghertzsch.taxcalculator.domain.repositories.NetAmountComputationRepository
+com/ghertzsch/taxcalculator/domain/events/NetAmountComputed.java
+ com.ghertzsch.taxcalculator.domain.events.NetAmountComputed
 com/ghertzsch/taxcalculator/MainVerticle.java
  com.ghertzsch.taxcalculator.MainVerticle
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Croatia.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Croatia
+com/ghertzsch/taxcalculator/application/queries/GetNetAmountComputationHandler.java
+ com.ghertzsch.taxcalculator.application.queries.GetNetAmountComputationHandler
+com/ghertzsch/taxcalculator/domain/valueobjects/Country.java
+ com.ghertzsch.taxcalculator.domain.valueobjects.Country
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Malta.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Malta
+com/ghertzsch/taxcalculator/plugins/Resources/CountryWithTax/Greece.java
+ com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.Greece

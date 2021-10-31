@@ -1,4 +1,4 @@
-package com.ghertzsch.taxcalculator.plugins.Resources.Country;
+package com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax;
 
 import com.ghertzsch.taxcalculator.domain.factories.TaxRateFactory;
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;

@@ -1,9 +1,9 @@
 package com.ghertzsch.taxcalculator.plugins.Resources;
 
 import com.ghertzsch.taxcalculator.domain.repositories.TaxRateRepository;
-import com.ghertzsch.taxcalculator.plugins.Resources.Country.*;
+import com.ghertzsch.taxcalculator.plugins.Resources.CountryWithTax.*;
 
-public class GenerateAllCountries {
+public class GenerateAllCountriesWithTax {
   public static void generate(TaxRateRepository taxRateRepository) {
     Austria.generate(taxRateRepository);
     Belgium.generate(taxRateRepository);
