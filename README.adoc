@@ -4,22 +4,22 @@ image:https://img.shields.io/badge/vert.x-4.1.5-purple.svg[link="https://vertx.i
 
 This application was generated using http://start.vertx.io
 
-== Building
+== Run
 
-To launch your tests:
-```
-./gradlew clean test
-```
-
-To package your application:
-```
-./gradlew clean assemble
-```
-
-To run your application:
-```
-./gradlew clean run
-```
+----
+Zuerst MainVerticle starten.
+Postman-Requests/Responses:
+1.	Post: http://localhost:1323/api/computations
+Somit werden alle Länder-Entitäten erzeugt.
+2.	Get: http://localhost:1323/api/computations 
+Somit wird eine neue Berechnung als Entität erstellt. Die ID-Nummer ist als Eintrag zu finden:  "id": "df910397-6e2e-4389-8021-b6dac2b76817". 
+3.	Post: http://localhost:1323/api/computations/df910397-6e2e-4389-8021-b6dac2b76817/compute
+In Body folgende Raw-Json einfügen. Die TaxRateID stammt von der erzeugten Country-Entität ab.
+{
+    "taxRateId":" b4ddb7a4-53e4-4978-a51b-0f50b82f269b",
+    "grossAmount":10000.0
+}
+----
 
 == Help
 
