@@ -6,6 +6,7 @@ This application was generated using http://start.vertx.io
 
 == Run
 
+----
 Zuerst MainVerticle starten.
 Postman-Requests/Responses:
 1.	Post: http://localhost:1323/api/computations
@@ -18,6 +19,7 @@ In Body folgende Raw-Json einfügen. Die TaxRateID stammt von der erzeugten Coun
     "taxRateId":" b4ddb7a4-53e4-4978-a51b-0f50b82f269b",
     "grossAmount":10000.0
 }
+----
 
 == Help
 
