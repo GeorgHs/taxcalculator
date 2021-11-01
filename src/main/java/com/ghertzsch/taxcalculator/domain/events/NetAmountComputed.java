@@ -13,7 +13,9 @@ public class NetAmountComputed extends Event {
 
   private final GrossAmount grossAmount;
 
-  public NetAmountComputed(UUID netAmountComputationId, TaxRate taxRate, GrossAmount grossAmount) {
+  public NetAmountComputed(UUID netAmountComputationId,
+                           TaxRate taxRate,
+                           GrossAmount grossAmount) {
     this.netAmountComputationId = netAmountComputationId;
     this.taxRate = taxRate;
     this.grossAmount = grossAmount;
